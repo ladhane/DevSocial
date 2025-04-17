@@ -9,7 +9,7 @@ app.use('/user',(req,res,next)=>{
 },(req,res,next)=>{
     console.log('Handling user 2!!')
     next()
-    res.send('user 2');
+res.send('user 2');
 },(req,res,next)=>{ 
     console.log('Handling user 3!!')
     next()
