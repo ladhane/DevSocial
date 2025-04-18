@@ -1,23 +1,17 @@
 const express = require('express');
+const { authUser } = require('./middlewares/auth');
 const PORT = 3000;
 const app = express();
 
-app.use('/user',(req,res,next)=>{
-    console.log('Handling user 1!!')
-    next();
-    // res.send('user 1');
-},(req,res,next)=>{
-    console.log('Handling user 2!!')
-    next()
-res.send('user 2');
-},(req,res,next)=>{ 
-    console.log('Handling user 3!!')
-    next()
-    // res.send('user 3');
-},(req,res,next)=>{
-    console.log('Handling user 4!!')
-    next()
-    // res.send('user 4');
+app.use('/admin', authUser)
+app.get('/admin/getAllData',(req,res)=>{
+    res.send([{fname: 'John', lname: 'Doe'},{fname: 'Jane', lname: 'Doe'}])
+})
+app.post('/admin/addData',(req,res)=>{
+    res.send('Data added successfully')
+})
+app.delete('/admin/deleteData',(req,res)=>{
+    res.send('Data deleted successfully')
 })
 
 
